@@ -57,19 +57,13 @@ password_strength_checker/
 ---
 ## 📦 Installation
 
-1. Clone the repo or download the ZIP:
-
-```
-git clone https://github.com/your-repo/password_strength_checker.git
-```
-
-2. Run the app:
+1. Run the app:
 
 ```
 python ./GUI/main.py
 ```
 
-3. Run the web:
+2. Run the web:
 
 ```
 python ./WEB/main.py
