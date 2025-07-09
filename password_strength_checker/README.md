@@ -60,7 +60,7 @@ password_strength_checker/
 1. Clone the repo or download the ZIP:
 
 ```
-git clone https://github.com/your-repo/password_strength_checker.git
+git clone https://github.com/sriram-1017/Tamilskills-project-list/password_strength_checker.git
 ```
 
 2. Run the app:
