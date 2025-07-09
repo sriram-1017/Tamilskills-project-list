@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Password Strength Checker</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      width: 450px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    input[type="password"], input[type="text"] {
+      padding: 12px;
+      width: 100%;
+      margin: 12px 0;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #1abc9c;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #16a085;
+    }
+    .checkbox {
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: #34495e;
+    }
+    .result {
+      background: #f1f1f1;
+      border-left: 5px solid #1abc9c;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .visible-password {
+      margin-top: 10px;
+      color: #7f8c8d;
+      font-style: italic;
+    }
+    ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🔐 Password Strength Checker</h2>
+    <form method="post">
+      <input type="password" id="password" name="password" placeholder="Enter password" value="{{ password }}" required>
+      <label class="checkbox"><input type="checkbox" onclick="togglePassword()"> Show Password</label>
+      <button type="submit">Check Password</button>
+    </form>
+
+    {% if password %}
+    <div class="visible-password">
+      <strong>Entered Password:</strong> {{ password }}
+    </div>
+    {% endif %}
+
+    {% if result %}
+    <div class="result">
+      <p><strong>Strength:</strong> {{ result.strength }}</p>
+      <p><strong>Entropy:</strong> {{ result.entropy }}</p>
+      <p><strong>Blacklisted:</strong> {{ 'Yes' if result.is_blacklisted else 'No' }}</p>
+      {% if result.suggestions %}
+      <p><strong>Suggestions:</strong></p>
+      <ul>
+        {% for s in result.suggestions %}
+        <li>{{ s }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if result.example %}
+      <p><strong>Example Strong Password:</strong> {{ result.example }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+
+  <script>
+    function togglePassword() {
+      var pwd = document.getElementById("password");
+      pwd.type = (pwd.type === "password") ? "text" : "password";
+    }
+  </script>
+</body>
+</html>
